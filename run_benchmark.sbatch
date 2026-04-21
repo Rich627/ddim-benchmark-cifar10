@@ -15,5 +15,5 @@
 module load mamba/latest
 source activate ddim_env
 
-cd "/home/juichili/EEE 598 Generative AI Theory and Practice final project"
+cd "$HOME/ddim-benchmark"
 python -u benchmark.py --resume

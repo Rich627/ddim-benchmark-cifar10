@@ -9,12 +9,15 @@ and inference time across different step counts and stochasticity (eta) values.
 
 ## Setup on ASU SOL
 
-### 1. Upload project to SOL
+### 1. Clone and upload to SOL
 
 ```bash
-# from local machine (includes ddim/ repo)
-scp -r "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/"* \
-    juichili@sol.asu.edu:"/home/juichili/EEE 598 Generative AI Theory and Practice final project/"
+git clone https://github.com/Rich627/ddim-benchmark-cifar10.git
+cd ddim-benchmark-cifar10
+git clone https://github.com/ermongroup/ddim.git
+
+# upload to SOL (replace <asurite> with your ASURITE)
+scp -r ./* <asurite>@sol.asu.edu:"~/ddim-benchmark/"
 ```
 
 ### 2. Create environment
@@ -22,44 +25,24 @@ scp -r "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/fi
 Login node has memory limits, so submit env setup as a batch job:
 
 ```bash
+ssh <asurite>@sol.asu.edu
+cd ~/ddim-benchmark
 sbatch setup_env.sbatch
-# check when done
-squeue -u juichili
+squeue -u $USER
 cat setup_env_*.out
 ```
 
-Or use an interactive session:
-
-```bash
-interactive -p general -q class -t 0-01:00:00
-bash setup_env.sh
-exit
-```
-
-### 3. Re-upload after local edits (skips ddim/ repo)
-
-```bash
-# from local machine
-scp "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/benchmark.py" \
-    "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/run_benchmark.sbatch" \
-    "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/environment.yml" \
-    "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/setup_env.sh" \
-    "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/setup_env.sbatch" \
-    "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/README.md" \
-    juichili@sol.asu.edu:"/home/juichili/EEE 598 Generative AI Theory and Practice final project/"
-```
-
-### 4. Run benchmark
+### 3. Run benchmark
 
 ```bash
 sbatch run_benchmark.sbatch      # submit
-squeue -u juichili               # check status
+squeue -u $USER                  # check status
 tail -f benchmark_*.out          # watch output
 ```
 
 Figures are auto-generated when benchmark finishes, saved to `figures/`.
 
-### 5. benchmark.py options
+### 4. benchmark.py options
 
 ```bash
 python -u benchmark.py                # full benchmark (auto-plots at end)
@@ -68,15 +51,11 @@ python -u benchmark.py --fid-only     # recompute FID for existing samples
 python -u benchmark.py --plot-only    # regenerate figures from results json
 ```
 
-### 6. Download results to local machine
+### 5. Download results to local machine
 
 ```bash
-# from local machine — download results, figures, and logs
-scp juichili@sol.asu.edu:"/home/juichili/EEE 598 Generative AI Theory and Practice final project/benchmark_results.json" \
-    "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/"
-
-scp -r juichili@sol.asu.edu:"/home/juichili/EEE 598 Generative AI Theory and Practice final project/figures" \
-    "/Users/rich/Desktop/EEE 598 Generative AI Theory and Practice/sol_env/final_project/"
+scp <asurite>@sol.asu.edu:"~/ddim-benchmark/benchmark_results.json" .
+scp -r <asurite>@sol.asu.edu:"~/ddim-benchmark/figures" .
 ```
 
 ## Experiments
@@ -88,8 +67,7 @@ scp -r juichili@sol.asu.edu:"/home/juichili/EEE 598 Generative AI Theory and Pra
 
 ## SOL Resource Limits
 
-- Course limit lifted — use `public` QOS (no GPU minute cap)
-- Max wall time: 7 days (public partition)
+- Account: `class_eee59838068spring2026`
 - Using: A100 GPU, public partition, public QOS
 
 ## Team

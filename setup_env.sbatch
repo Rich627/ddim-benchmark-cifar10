@@ -10,5 +10,6 @@
 #SBATCH --export=NONE
 
 module load mamba/latest
+cd "$HOME/ddim-benchmark"
 mamba env create -f environment.yml
 echo "ddim_env created successfully"

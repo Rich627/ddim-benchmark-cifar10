@@ -127,9 +127,6 @@ def save_results(res):
     with open(results_json, "w") as f:
         json.dump(res, f, indent=2)
 
-
-# plotting
-
 def plot_fid_vs_steps(results):
     ddim, ddpm = {}, {}
     for name, d in results.items():
@@ -258,11 +255,106 @@ def plot_sample_grid():
     plt.close()
 
 
+def _find_sample_dir(run_name):
+    for sub in ["image_samples", "samples"]:
+        d = os.path.join(results_dir, sub, run_name)
+        if os.path.isdir(d):
+            return d
+    return None
+
+
+def _get_pngs(d, indices):
+    pngs = sorted([f for f in os.listdir(d) if f.endswith(".png")])
+    return [os.path.join(d, pngs[i]) for i in indices if i < len(pngs)]
+
+
+def plot_steps_comparison():
+    step_list = [10, 25, 50, 100]
+    indices = list(range(8))
+    sections = [
+        ("DDIM", 0.0, "ddim_steps{}"),
+        ("DDPM", 1.0, "ddpm_steps{}"),
+    ]
+    n_cols = len(indices)
+    n_rows = len(step_list)
+    fig, axes = plt.subplots(n_rows, n_cols * 2, figsize=(n_cols * 2 * 1.3, n_rows * 1.5))
+
+    for sec_i, (sec_label, eta, fmt) in enumerate(sections):
+        for row, s in enumerate(step_list):
+            d = _find_sample_dir(fmt.format(s))
+            if not d:
+                continue
+            imgs = _get_pngs(d, indices)
+            for col, img_path in enumerate(imgs):
+                ax = axes[row, sec_i * n_cols + col]
+                ax.imshow(plt.imread(img_path))
+                ax.set_xticks([])
+                ax.set_yticks([])
+                if col == 0:
+                    ax.set_ylabel(f"{s} steps", fontsize=9)
+                if row == 0:
+                    if col == n_cols // 2:
+                        ax.set_title(sec_label, fontsize=11, fontweight="bold")
+
+    fig.suptitle("Same Seed Across Steps: DDIM vs DDPM", fontsize=13, y=1.02)
+    plt.tight_layout()
+    plt.savefig(f"{fig_dir}/sample_steps_comparison.png", dpi=150, bbox_inches="tight")
+    plt.close()
+
+
+def plot_eta_grid():
+    etas = [0.0, 0.25, 0.5, 0.75, 1.0]
+    indices = list(range(8))
+    n_cols = len(indices)
+    n_rows = len(etas)
+
+    rows = []
+    for eta in etas:
+        if eta == 0.0:
+            name = "ddim_steps50"
+        elif eta == 1.0:
+            name = "ddpm_steps50"
+        else:
+            name = f"eta{eta:.2f}_steps50"
+        d = _find_sample_dir(name)
+        if not d:
+            continue
+        imgs = _get_pngs(d, indices)
+        if imgs:
+            label = f"$\\eta={eta:.2f}$"
+            if eta == 0.0:
+                label += " (DDIM)"
+            elif eta == 1.0:
+                label += " (DDPM)"
+            rows.append((label, imgs))
+
+    if len(rows) < 2:
+        return
+
+    n_rows = len(rows)
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(n_cols * 1.5, n_rows * 1.8))
+    if n_rows == 1:
+        axes = axes[np.newaxis, :]
+    for row, (label, imgs) in enumerate(rows):
+        for col in range(min(n_cols, len(imgs))):
+            ax = axes[row, col]
+            ax.imshow(plt.imread(imgs[col]))
+            ax.set_xticks([])
+            ax.set_yticks([])
+        axes[row, 0].set_ylabel(label, fontsize=10)
+    fig.suptitle("Effect of $\\eta$ on Sample Quality (50 Steps)", fontsize=13, y=1.02)
+    plt.tight_layout()
+    plt.savefig(f"{fig_dir}/sample_eta_grid.png", dpi=150, bbox_inches="tight")
+    plt.close()
+
+
 def plot_all(results):
     plot_fid_vs_steps(results)
     plot_fid_vs_eta(results)
     plot_time_vs_steps(results)
     plot_sample_grid()
+    plot_steps_comparison()
+    plot_eta_grid()
     print(f"figures saved to {fig_dir}/")
 
 

@@ -14,4 +14,4 @@ module load mamba/latest
 source activate ddim_env
 
 cd "$HOME/ddim-benchmark"
-python -u benchmark.py --fid-only
+python -u benchmark.py --fid-only --resume

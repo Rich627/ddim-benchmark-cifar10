@@ -1,0 +1,107 @@
+{
+  "ddim_steps10": {
+    "steps": 10,
+    "eta": 0.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 355.6,
+    "fid": null
+  },
+  "ddpm_steps10": {
+    "steps": 10,
+    "eta": 1.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 336.2,
+    "fid": null
+  },
+  "ddim_steps25": {
+    "steps": 25,
+    "eta": 0.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 605.6,
+    "fid": null
+  },
+  "ddpm_steps25": {
+    "steps": 25,
+    "eta": 1.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 607.2,
+    "fid": null
+  },
+  "ddim_steps50": {
+    "steps": 50,
+    "eta": 0.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 1062.8,
+    "fid": null
+  },
+  "ddpm_steps50": {
+    "steps": 50,
+    "eta": 1.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 1056.3,
+    "fid": null
+  },
+  "ddim_steps100": {
+    "steps": 100,
+    "eta": 0.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 1984.5,
+    "fid": null
+  },
+  "ddpm_steps100": {
+    "steps": 100,
+    "eta": 1.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 1920.6,
+    "fid": null
+  },
+  "ddim_steps250": {
+    "steps": 250,
+    "eta": 0.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 4693.8,
+    "fid": null
+  },
+  "ddpm_steps250": {
+    "steps": 250,
+    "eta": 1.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 4566.6,
+    "fid": null
+  },
+  "ddim_steps1000": {
+    "steps": 1000,
+    "eta": 0.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 17713.0,
+    "fid": null
+  },
+  "ddpm_steps1000": {
+    "steps": 1000,
+    "eta": 1.0,
+    "skip_type": "quad",
+    "sampling_time_sec": 17772.0,
+    "fid": null
+  },
+  "eta0.25_steps50": {
+    "steps": 50,
+    "eta": 0.25,
+    "skip_type": "quad",
+    "sampling_time_sec": 1054.0,
+    "fid": null
+  },
+  "eta0.50_steps50": {
+    "steps": 50,
+    "eta": 0.5,
+    "skip_type": "quad",
+    "sampling_time_sec": 1082.1,
+    "fid": null
+  },
+  "eta0.75_steps50": {
+    "steps": 50,
+    "eta": 0.75,
+    "skip_type": "quad",
+    "sampling_time_sec": 1075.6,
+    "fid": null
+  }
+}

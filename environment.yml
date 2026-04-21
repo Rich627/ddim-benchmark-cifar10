@@ -1,0 +1,19 @@
+name: ddim_env
+channels:
+  - pytorch
+  - nvidia
+  - defaults
+dependencies:
+  - python=3.10
+  - pytorch
+  - torchvision
+  - numpy
+  - scipy
+  - matplotlib
+  - pyyaml
+  - tqdm
+  - pip
+  - pandas
+  - pip:
+    - pytorch-fid
+    - lmdb

@@ -42,7 +42,15 @@ tail -f benchmark_*.out          # watch output
 
 Figures are auto-generated when benchmark finishes, saved to `figures/`.
 
-### 4. benchmark.py options
+### 4. Compute FID scores
+
+After sampling completes, submit FID computation separately:
+
+```bash
+sbatch run_fid.sbatch               # compute FID for all experiments
+```
+
+### 5. benchmark.py options
 
 ```bash
 python -u benchmark.py                # full benchmark (auto-plots at end)
@@ -51,7 +59,13 @@ python -u benchmark.py --fid-only     # recompute FID for existing samples
 python -u benchmark.py --plot-only    # regenerate figures from results json
 ```
 
-### 5. Download results to local machine
+### 6. Compare with paper results
+
+```bash
+python compare_fid.py                 # prints table + generates comparison plot
+```
+
+### 7. Download results to local machine
 
 ```bash
 scp <asurite>@sol.asu.edu:"~/ddim-benchmark/benchmark_results.json" .
@@ -64,6 +78,18 @@ scp -r <asurite>@sol.asu.edu:"~/ddim-benchmark/figures" .
 |-----------|-------|-----|-------------|
 | DDIM vs DDPM | 10, 25, 50, 100, 250, 1000 | 0.0 / 1.0 | FID and time comparison |
 | Eta sweep | 50 | 0.0, 0.25, 0.5, 0.75, 1.0 | Effect of stochasticity |
+
+## Generated Figures
+
+| Figure | Description |
+|--------|-------------|
+| `fid_vs_steps.png` | FID vs sampling steps (DDIM vs DDPM) |
+| `fid_vs_eta.png` | FID vs eta at 50 steps |
+| `time_vs_steps.png` | Inference time vs sampling steps |
+| `sample_grid.png` | Generated sample grid (DDIM vs DDPM) |
+| `sample_steps_comparison.png` | Same seed across steps (like paper Fig. 4) |
+| `sample_eta_grid.png` | Effect of eta on sample quality at 50 steps |
+| `fid_comparison.png` | Our FID vs paper's reported FID |
 
 ## SOL Resource Limits
 

@@ -4,104 +4,104 @@
     "eta": 0.0,
     "skip_type": "quad",
     "sampling_time_sec": 355.6,
-    "fid": null
+    "fid": 13.646745216514262
   },
   "ddpm_steps10": {
     "steps": 10,
     "eta": 1.0,
     "skip_type": "quad",
     "sampling_time_sec": 336.2,
-    "fid": null
+    "fid": 41.11131994571792
   },
   "ddim_steps25": {
     "steps": 25,
     "eta": 0.0,
     "skip_type": "quad",
     "sampling_time_sec": 605.6,
-    "fid": null
+    "fid": 6.13045789085902
   },
   "ddpm_steps25": {
     "steps": 25,
     "eta": 1.0,
     "skip_type": "quad",
     "sampling_time_sec": 607.2,
-    "fid": null
+    "fid": 14.620775071482626
   },
   "ddim_steps50": {
     "steps": 50,
     "eta": 0.0,
     "skip_type": "quad",
     "sampling_time_sec": 1062.8,
-    "fid": null
+    "fid": 4.736843773236842
   },
   "ddpm_steps50": {
     "steps": 50,
     "eta": 1.0,
     "skip_type": "quad",
     "sampling_time_sec": 1056.3,
-    "fid": null
+    "fid": 8.09568218561651
   },
   "ddim_steps100": {
     "steps": 100,
     "eta": 0.0,
     "skip_type": "quad",
     "sampling_time_sec": 1984.5,
-    "fid": null
+    "fid": 4.2633805329520555
   },
   "ddpm_steps100": {
     "steps": 100,
     "eta": 1.0,
     "skip_type": "quad",
     "sampling_time_sec": 1920.6,
-    "fid": null
+    "fid": 5.855916301740194
   },
   "ddim_steps250": {
     "steps": 250,
     "eta": 0.0,
     "skip_type": "quad",
     "sampling_time_sec": 4693.8,
-    "fid": null
+    "fid": 4.025089088169466
   },
   "ddpm_steps250": {
     "steps": 250,
     "eta": 1.0,
     "skip_type": "quad",
     "sampling_time_sec": 4566.6,
-    "fid": null
+    "fid": 4.893349204315086
   },
   "ddim_steps1000": {
     "steps": 1000,
     "eta": 0.0,
     "skip_type": "quad",
     "sampling_time_sec": 17713.0,
-    "fid": null
+    "fid": 3.9539644058257295
   },
   "ddpm_steps1000": {
     "steps": 1000,
     "eta": 1.0,
     "skip_type": "quad",
     "sampling_time_sec": 17772.0,
-    "fid": null
+    "fid": 4.774792842867782
   },
   "eta0.25_steps50": {
     "steps": 50,
     "eta": 0.25,
     "skip_type": "quad",
     "sampling_time_sec": 1054.0,
-    "fid": null
+    "fid": 4.9111881182329284
   },
   "eta0.50_steps50": {
     "steps": 50,
     "eta": 0.5,
     "skip_type": "quad",
     "sampling_time_sec": 1082.1,
-    "fid": null
+    "fid": 5.330443999333738
   },
   "eta0.75_steps50": {
     "steps": 50,
     "eta": 0.75,
     "skip_type": "quad",
     "sampling_time_sec": 1075.6,
-    "fid": null
+    "fid": 6.1026350937787015
   }
 }

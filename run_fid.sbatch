@@ -11,7 +11,9 @@
 #SBATCH --export=NONE
 
 module load mamba/latest
-source activate ddim_env
+eval "$(conda shell.bash hook)"
+conda activate ddim_env
+export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:$LD_LIBRARY_PATH"
 
 cd "$HOME/ddim-benchmark"
 python -u benchmark.py --fid-only --resume

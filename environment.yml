@@ -1,19 +1,18 @@
 name: ddim_env
 channels:
-  - pytorch
-  - nvidia
-  - defaults
+  - conda-forge
 dependencies:
   - python=3.10
-  - pytorch
-  - torchvision
-  - numpy
+  - numpy<2
   - scipy
   - matplotlib
   - pyyaml
   - tqdm
-  - pip
   - pandas
+  - pip
   - pip:
+    - --extra-index-url https://download.pytorch.org/whl/cu118
+    - torch==2.1.0+cu118
+    - torchvision==0.16.0+cu118
     - pytorch-fid
     - lmdb

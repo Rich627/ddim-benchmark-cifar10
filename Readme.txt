@@ -1,5 +1,7 @@
 # EEE 598 Generative AI Theory and Practice - Final Project
 
+**Group #: 6**
+
 ## Denoising Diffusion Implicit Models: Accelerated Sampling and Quality Trade-offs
 
 Benchmark comparison of DDIM vs DDPM sampling on CIFAR-10, evaluating FID scores

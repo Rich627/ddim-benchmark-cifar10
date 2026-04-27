@@ -100,4 +100,4 @@ scp -r <asurite>@sol.asu.edu:"~/ddim-benchmark/figures" .
 
 - Anish Verma (Lead)
 - Jui-Chi Liu (Coding)
-- Aaldin Kesavan Helen
+- Aaldin Kesavan Helen (math)
